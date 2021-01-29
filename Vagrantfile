@@ -12,8 +12,6 @@ Vagrant.configure(2) do |config|
     login.vm.box = "centos/8"
     login.vm.network "private_network", ip: "192.168.56.10"
     login.vm.provision :hosts, :sync_hosts => true
-    login.ssh.host = "192.168.56.10"
-    login.ssh.port = "22"
   end
 
   config.vm.define "#{cluster_name}-control-0" do |control|
@@ -21,8 +19,6 @@ Vagrant.configure(2) do |config|
     control.vm.box = "centos/8"
     control.vm.network "private_network", ip: "192.168.56.11"
     control.vm.provision :hosts, :sync_hosts => true
-    control.ssh.host = "192.168.56.11"
-    control.ssh.port = "22"
   end
 
   (0..2).each do |i|
@@ -36,8 +32,6 @@ Vagrant.configure(2) do |config|
       node.vm.box = "centos/8"
       node.vm.network "private_network", ip: ip
       node.vm.provision :hosts, :sync_hosts => true
-      node.ssh.host = ip
-      node.ssh.port = "22"
     end
   end
 
