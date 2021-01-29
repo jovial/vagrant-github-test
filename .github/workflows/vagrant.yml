@@ -6,6 +6,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
+
       - name: Install dependencies.
         run: sudo pip3 install -r requirements.txt
 
@@ -18,4 +19,5 @@ jobs:
       - name: Print ansible inventory
         run: vagranttoansible | tee inventory
 
-      - name: ansible all -m ping -i inventory
+      - name: Run ansible
+        run: ansible all -m ping -i inventory
