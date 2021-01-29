@@ -3,7 +3,7 @@ name: Test vagrant with ansible
 on: [push]
 jobs:
   vagrant-example:
-    runs-on: macos-latest
+    runs-on: macos-11.0
     steps:
       - uses: actions/checkout@v2
 
