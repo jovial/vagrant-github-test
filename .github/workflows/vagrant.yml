@@ -1,9 +1,21 @@
 
-name: Run install dependencies script
+name: Test vagrant with ansible
 on: [push]
 jobs:
   vagrant-example:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - run: vagrant up
+      - name: Install dependencies.
+        run: sudo pip3 install -r requirements.txt
+
+      - name: Install required vagrant plugins
+        run: vagrant plugin install vagrant-hosts
+
+      - name: Provision machines
+        run: vagrant up
+
+      - name: Print ansible inventory
+        run: vagranttoansible | tee inventory
+
+      - name: ansible all -m ping -i inventory
