@@ -1,0 +1,9 @@
+ 
+name: Run install dependencies script
+on: [push]
+jobs:
+  - vagrant-example:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: vagrant up
